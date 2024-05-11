@@ -1,0 +1,6 @@
+	The data have been generated with random values. Start and goal positions have been selected within a range between -20 and 20 for all x, y and z components, and gate position were selected between start and goal position for each of the axes. 
+	The generated data have been splitted into training and test data with a ratio of 11 to 2.
+	The neural network examples were created with parameters picked by optuna framework and best results were saved from the examples.
+	The main problem faced in this process was to seperate the outputs of the NN. Although the output size is four, there were two different outputs: the velocity vector at the gate, and total time it will cause for path to extend. but here the velocity vectors could never be converged with good percentage. The main cause of this could be the small values of the velocity vectors.
+	I've tried normalization of all the data but then it produced 'NaN' values in the output. Then I though just normalizing the velocity output but read online that it does not make sense to normalize true outputs because it'll lead to estimation errors.
+	After that, I've tried with different loss functions and some constant multiplication of those loss functions and saved the outputs.
