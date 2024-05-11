@@ -1,0 +1,16 @@
+Trial with highest accuracy: 
+	number: 15
+	params: {'num_layers': 6, 'num_channels': 34, 'learning_rate': 3.7477536078483586e-05, 'n_units_l0': 200, 'n_units_l1': 173, 'n_units_l2': 35, 'n_units_l3': 65, 'n_units_l4': 39, 'n_units_l5': 95}
+	values: [0.24755520442128182]
+Trial with highest accuracy: 
+	number: 27
+	params: {'num_layers': 6, 'num_channels': 466, 'learning_rate': 2.1210092982629475e-05, 'n_units_l0': 123, 'n_units_l1': 75, 'n_units_l2': 79, 'n_units_l3': 142, 'n_units_l4': 154, 'n_units_l5': 87}
+	values: [0.27296457448601724]
+Trial with highest accuracy: 
+	number: 11
+	params: {'num_layers': 5, 'num_channels': 171, 'learning_rate': 1.3656744259352855e-05, 'n_units_l0': 221, 'n_units_l1': 156, 'n_units_l2': 219, 'n_units_l3': 137, 'n_units_l4': 218}
+	values: [0.26150270262360575]
+Trial with highest accuracy: 
+	number: 21
+	params: {'num_layers': 5, 'learning_rate': 8.53819290227296e-06, 'n_units_l0': 134, 'n_units_l1': 506, 'n_units_l2': 349, 'n_units_l3': 502, 'n_units_l4': 118}
+	values: [0.2396715796291828]
