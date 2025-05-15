@@ -1,0 +1,59 @@
+# Compiled binaries
+main
+unittests
+*.o
+obj/
+*.a
+*.so
+*.dylib
+a.out
+
+# Editor settings
+.vscode/
+.idea/
+*.code-workspace
+
+# Build files
+build/
+bin/
+*.class
+*.exe
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# External tools
+.clang-tidy.yml
+.ccls-cache/
+
+# Data files
+*.txt
+*.csv
+*.dat
+scripts/trajectory_data/
+scripts/vo_testing_results/
+
+# Images and docs
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.md~
+*.svg
+*.dot
+
+# Model files
+*.pt
+*.pth
+*.onnx
+*.pb
+
+# Specific files
+model_server.py 

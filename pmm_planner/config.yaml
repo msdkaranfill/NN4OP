@@ -1,0 +1,12 @@
+end:
+  position: [19.379290335392803, 19.921106741425724, 16.19231441261158]
+  velocity: [0, 0, 0]
+end_free: true
+gates: [11.96831607996241, -1.6976469450976577, 13.491698331489351]
+gates_orientations: [20.1, -20, -126, -180]
+gates_pitch_orientations: [11.1, 0, 0, 0]
+max_yaw_pitch_ang: 10
+precision_yaw_pitch_ang: 10
+start:
+  position: [-0.2908285611811543, -17.956439670025507, 14.70939304038599]
+  velocity: [0, 0, 0]
