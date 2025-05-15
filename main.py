@@ -282,13 +282,13 @@ def train_combined_model(model, train_loader, val_loader, output_dir='output', b
             target_time = data[:, -1].view(-1, 1)  # Last feature is time target
             
             # Transform data
-            graph_data = transformer.transform(input_data)
+            x, edge_index, edge_attr, gate_indices = transformer.transform(input_data)
             
             # Forward pass
             vel_optimizer.zero_grad()
             time_optimizer.zero_grad()
             
-            pred_velocity, pred_time = model(graph_data)
+            pred_velocity, pred_time = model(x, edge_index, edge_attr, gate_indices)
             
             # Get positions for physics constraints
             positions = (input_data[:, :3], input_data[:, 12:15], input_data[:, 6:9])
@@ -354,8 +354,8 @@ def train_combined_model(model, train_loader, val_loader, output_dir='output', b
                 target_velocity = data[:, 15:18]
                 target_time = data[:, -1].view(-1, 1)
                 
-                graph_data = transformer.transform(input_data)
-                pred_velocity, pred_time = model(graph_data)
+                x, edge_index, edge_attr, gate_indices = transformer.transform(input_data)
+                pred_velocity, pred_time = model(x, edge_index, edge_attr, gate_indices)
                 
                 vel_loss, time_loss = val_criterion(pred_velocity, target_velocity, pred_time, target_time)
                 val_vel_loss += vel_loss.item()
