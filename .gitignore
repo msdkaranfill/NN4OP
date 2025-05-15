@@ -1,0 +1,82 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# PyTorch model files
+*.pth
+*.pt
+#CPP import files
+*.h
+*.hpp
+*.cpp
+*.cc
+*.cxx
+
+
+# PDF files
+*.pdf
+
+# Text files
+*.txt
+# Image files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.ico
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE specific files
+.idea/
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# TensorBoard logs
+runs/
+
+# Result directories
+combined_model_results_*/
+isolated_vel_results_*/
+
+# Sample data directories (except READMEs)
+samples2/*
+!samples2/README.md
+
+# Specific files to ignore
+mymodel_torchviz
+mymodel_torchviz.*
+optuna_study_results
+
+# Keep requirements.txt
+!requirements.txt
+
+# Keep README.txt if it exists
+!README.txt 

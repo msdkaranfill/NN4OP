@@ -1,0 +1,16 @@
+torch==2.6.0+cu124
+torchvision             # For transforms (image augmentations etc.)
+optuna                  # Hyperparameter optimization
+fvcore                  # For FlopCountAnalysis
+scikit-learn            # For train_test_split
+ PyTorch)
+torchviz                # For visualizing computation graphs
+matplotlib              # For plots
+seaborn                 # For nice statistical plots
+numpy                   # For numerical calculations
+pickle-mixin            # For safe pickle handling (usually builtin, but adding this can be helpful for older setups)
+torch_scatter -f https://data.pyg.org/whl/torch-2.6.0+cu124.html
+torch_sparse -f https://data.pyg.org/whl/torch-2.6.0+cu124.html
+torch_cluster -f https://data.pyg.org/whl/torch-2.6.0+cu124.html
+torch_spline_conv -f https://data.pyg.org/whl/torch-2.6.0+cu124.html
+torch_geometric
