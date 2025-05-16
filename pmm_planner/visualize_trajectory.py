@@ -46,9 +46,16 @@ def plot_trajectories(trajectories):
         nn_arrow_end = nn_arrow_start + traj["velocity_nn"]
         ax.quiver(*nn_arrow_start, *traj["velocity_nn"], color='red', label='NN Velocity' if idx == 0 else "")
         
-        # Annotate time outputs
-        ax.text(*traj["gate_position"], f"{traj['time_opt']:.2f}(Opt)", color='green')
-        ax.text(*traj["gate_position"], f"{traj['time_nn']:.2f}(NN)", color='red')
+        # Annotate time outputs with formatted values
+        opt_text = f"Opt: {traj['time_opt']:.2f}s, v=({traj['velocity_opt'][0]:.2f}, {traj['velocity_opt'][1]:.2f}, {traj['velocity_opt'][2]:.2f})"
+        nn_text = f"NN: {traj['time_nn']:.2f}s, v=({traj['velocity_nn'][0]:.2f}, {traj['velocity_nn'][1]:.2f}, {traj['velocity_nn'][2]:.2f})"
+        
+        # Position the text slightly offset from the gate position
+        text_offset = 0.2
+        ax.text(traj["gate_position"][0], traj["gate_position"][1], traj["gate_position"][2] + text_offset, 
+                opt_text, color='green', fontsize=4)
+        ax.text(traj["gate_position"][0], traj["gate_position"][1], traj["gate_position"][2] - text_offset, 
+                nn_text, color='red', fontsize=4)
     
     # Set plot details
     ax.set_title("Trajectory Visualization")
@@ -63,7 +70,7 @@ def plot_trajectories(trajectories):
 
 # Main function to execute script
 if __name__ == "__main__":
-    filename = "output001.txt"  # Input file name
+    filename = "outputs_comparison.txt"  # Input file name
     trajectories = read_trajectory_data(filename)
     plot_trajectories(trajectories)
 

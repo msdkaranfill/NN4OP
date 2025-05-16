@@ -37,7 +37,7 @@ def generate_random_point(minim, maxim, p_s, p_e):
 listofconfigs = []
 outputs = []
 n_gates = 1
-for i in range(50):
+for i in range(10):
     # Load the YAML file
     with open(f'config.yaml', 'r') as file:
         config = yaml.safe_load(file)
@@ -77,10 +77,10 @@ for i in range(50):
     except subprocess.CalledProcessError as e:
         print(f"Error running C++ program: {e}")
 
-t = time.time()
-with open(f'output{t}50k.txt', 'w') as file:
+
+with open(f'outputs_comparison.txt', 'w') as file:
     [file.write(output) for output in outputs]
-print(f"results have been save to the compare_results{t}.txt file")
+print(f"results have been save to the outputs_comparison.txt file")
 
 
 def plotdata(datas):

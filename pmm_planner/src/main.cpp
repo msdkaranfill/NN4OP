@@ -28,6 +28,7 @@
 #include "common.hpp"
 #include "cftg.hpp"
 #include "NN_model.hpp"
+#include <iomanip>
 
 using namespace pmm;
 
@@ -142,13 +143,18 @@ int main(int argc, char** argv) {
   // waypoint position
   Vector<3> p_1;    
   config["gates"] >> p_1;
-
+  /*
   std::cout << "Input parameters:" << std::endl;
   std::cout << "Start position: " << p_s.transpose() << std::endl;
   std::cout << "Start velocity: " << v_s.transpose() << std::endl;
   std::cout << "Gate position: " << p_1.transpose() << std::endl;
   std::cout << "End position: " << p_e.transpose() << std::endl;
-  std::cout << "End velocity: " << v_e.transpose() << std::endl << std::endl;
+  std::cout << "End velocity: " << v_e.transpose() << std::endl;*/
+
+
+
+
+
 
   // Path to the neural network model
   const std::string nn_path = "traced_model.pt";
@@ -164,45 +170,24 @@ int main(int argc, char** argv) {
   };
 
   // Start the neural network prediction process
-  std::cout << "Starting neural network prediction using direct C++ model loading..." << std::endl;
+  //std::cout << "Starting neural network prediction using direct C++ model loading..." << std::endl;
   auto model_process_start = std::chrono::high_resolution_clock::now();
   
-  // Make prediction
-  auto model_result = predict_with_NN(model, nn_inputs);
-  auto model_end = std::chrono::high_resolution_clock::now();
-  auto model_duration = std::chrono::duration_cast<std::chrono::milliseconds>(model_end - model_process_start);
-  
   // Run the optimization process
-  std::cout << "Running optimization..." << std::endl;
+  //std::cout << "Running optimization..." << std::endl;
   auto opt_start = std::chrono::high_resolution_clock::now();
   std::pair<Vector<3>, Scalar> opt_result = generate_trajectory(p_s, v_s, p_1, p_e, v_e, false);
   auto opt_end = std::chrono::high_resolution_clock::now();
   auto opt_duration = std::chrono::duration_cast<std::chrono::milliseconds>(opt_end - opt_start);
-  
-  std::cout << "Optimization results:" << std::endl;
-  std::cout << "Gate velocity: " << opt_result.first.transpose() << std::endl;
-  std::cout << "Trajectory duration: " << opt_result.second << " s" << std::endl;
-  std::cout << "Optimization time: " << opt_duration.count() << " ms" << std::endl << std::endl;
 
-  // Display model results
-  std::cout << "Model prediction results:" << std::endl;
-  std::cout << "Gate velocity: [" << model_result.first(0) << ", " 
-                                  << model_result.first(1) << ", " 
-                                  << model_result.first(2) << "]" << std::endl;
-  std::cout << "Trajectory duration: " << model_result.second << " s" << std::endl;
-  std::cout << "Model timing:" << std::endl;
-  std::cout << "  - Inference time: " << model_duration.count() << " ms" << std::endl << std::endl;
+  // Make prediction
+  auto model_result = predict_with_NN(model, nn_inputs);
+  auto model_end = std::chrono::high_resolution_clock::now();
+  auto model_duration = std::chrono::duration_cast<std::chrono::milliseconds>(model_end - model_process_start);
 
-  // Compare results
-  std::cout << "Comparison:" << std::endl;
-  std::cout << "Velocity difference: [" 
-            << std::abs(opt_result.first(0) - model_result.first(0)) << ", "
-            << std::abs(opt_result.first(1) - model_result.first(1)) << ", "
-            << std::abs(opt_result.first(2) - model_result.first(2)) << "]" << std::endl;
-  std::cout << "Duration difference: " << std::abs(opt_result.second - model_result.second) << " s" << std::endl;
-  
-  // Calculate speedup
-  std::cout << "Speedup factor: " << static_cast<float>(opt_duration.count()) / model_duration.count() << "x" << std::endl;
-
-  return 0;
+  // Output in the format expected by visualize_trajectory.py
+  // Format: start_pos(3) start_vel(3) end_pos(3) end_vel(3) gate_pos(3) vel_opt(3) time_opt vel_nn(3) time_nn 
+  std::cout << std::fixed << std::setprecision(2)
+            << p_s.transpose() << " " << v_s.transpose() << " " << p_e.transpose() << " " << v_e.transpose() << " " << p_1.transpose() << " " << opt_result.first.transpose() << " " << opt_result.second << " " << model_result.first.transpose() << " " << model_result.second << std::endl;
+           
 }

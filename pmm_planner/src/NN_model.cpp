@@ -10,11 +10,10 @@ torch::jit::script::Module& load_model(const std::string& nn_path) {
     static std::once_flag load_flag;
     std::call_once(load_flag, [&]() {
         try {
-            std::cout << "Loading model from: " << nn_path << std::endl;
-            // Make sure we're loading a scripted model, not a traced model
+            //std::cout << "Loading model from: " << nn_path << std::endl;
             model = torch::jit::load(nn_path);
             model.eval();  // Set to evaluation mode
-            std::cout << "Model loaded successfully" << std::endl;
+            //std::cout << "Model loaded successfully" << std::endl;
         } catch (const c10::Error& e) {
             std::cerr << "Error loading the model: " << e.what() << std::endl;
             std::exit(EXIT_FAILURE);
